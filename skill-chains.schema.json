@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Cheggin/skill-chain/skill-chains.schema.json",
+  "title": "Skill Chain Definitions",
+  "description": "Deterministic multi-phase skill flows. Each flow gates file edits until earlier phases complete.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["flows"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "flows": {
+      "type": "object",
+      "description": "Map of flow name to flow definition.",
+      "minProperties": 1,
+      "additionalProperties": { "$ref": "#/$defs/Flow" }
+    }
+  },
+  "$defs": {
+    "Flow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["description", "trigger_skill", "gate_patterns", "phases"],
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "One-sentence summary of the flow."
+        },
+        "trigger_skill": {
+          "type": "string",
+          "description": "Skill whose invocation activates this flow.",
+          "minLength": 1
+        },
+        "gate_patterns": {
+          "type": "array",
+          "description": "Glob patterns for files that are gated by this flow.",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        },
+        "phases": {
+          "type": "array",
+          "description": "Ordered phases. Earlier phases must complete before gated edits proceed.",
+          "items": { "$ref": "#/$defs/Phase" },
+          "minItems": 1
+        }
+      }
+    },
+    "Phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "required": {
+          "type": "array",
+          "description": "ALL skills must fire for phase completion.",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        },
+        "oneOf": {
+          "type": "array",
+          "description": "At least ONE skill must fire.",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 2
+        },
+        "anyOf": {
+          "type": "object",
+          "description": "At least min of the listed skills must fire.",
+          "required": ["of", "min"],
+          "properties": {
+            "of": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+            "min": { "type": "integer", "minimum": 1 }
+          }
+        }
+      }
+    }
+  }
+}
