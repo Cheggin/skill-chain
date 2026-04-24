@@ -1,0 +1,10 @@
+{
+  "name": "skill-chain",
+  "display_name": "Skill Chain",
+  "description": "Deterministic phase-gated skill enforcement for AI coding agents.",
+  "version": "0.1.0",
+  "author": "Reagan Hsu",
+  "repository": "https://github.com/Cheggin/skill-chain",
+  "license": "MIT",
+  "categories": ["workflow", "quality", "enforcement"]
+}
