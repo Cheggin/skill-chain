@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Browser Use — Make any AI agent control the browser",
+  title: "Browser Use — Let AI agents drive the browser",
   description:
-    "Browser Use is the open-source toolkit for reliable AI browser agents. Let models fill forms, scrape data, and complete real web tasks.",
+    "Open-source framework for AI agents that control real web browsers. Any LLM, vision + DOM, multi-tab, MIT licensed.",
 };
 
 export default function RootLayout({
@@ -26,9 +26,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col overflow-hidden">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

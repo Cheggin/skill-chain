@@ -1,450 +1,302 @@
-export default function Home() {
-  return (
-    <div className="relative flex h-screen w-full flex-col overflow-hidden bg-[#07080b] text-zinc-100">
-      <div className="absolute inset-0 grid-bg opacity-70" />
-      <div className="absolute inset-0 radial-glow" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+const GITHUB_URL = "https://github.com/browser-use/browser-use";
+const STARS = "58.2k";
+const CONTRIBUTORS = 420;
 
-      <Nav />
-
-      <main className="relative z-10 mx-auto flex w-full max-w-[1280px] flex-1 flex-col px-10 pt-6">
-        <section className="grid flex-1 grid-cols-12 gap-10 pb-6">
-          <HeroCopy />
-          <BrowserMock />
-        </section>
-        <ValueProps />
-      </main>
-    </div>
-  );
-}
-
-function Nav() {
-  return (
-    <header className="relative z-20 mx-auto flex w-full max-w-[1280px] items-center justify-between px-10 pt-6">
-      <div className="flex items-center gap-10">
-        <Logo />
-        <nav className="flex items-center gap-7 text-sm text-zinc-400">
-          <a className="hover:text-zinc-100" href="#">Product</a>
-          <a className="hover:text-zinc-100" href="#">Docs</a>
-          <a className="hover:text-zinc-100" href="#">Pricing</a>
-          <a className="hover:text-zinc-100" href="#">Changelog</a>
-        </nav>
-      </div>
-      <div className="flex items-center gap-3">
-        <a
-          href="https://github.com/browser-use/browser-use"
-          className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-xs text-zinc-300 transition hover:border-white/20 hover:bg-white/[0.06]"
-        >
-          <GithubIcon className="h-3.5 w-3.5" />
-          <span className="font-medium">browser-use/browser-use</span>
-          <span className="flex items-center gap-1 text-zinc-400">
-            <StarIcon className="h-3 w-3 text-amber-300" />
-            62.4k
-          </span>
-        </a>
-        <a
-          href="#"
-          className="rounded-full bg-white px-4 py-1.5 text-xs font-medium text-zinc-900 transition hover:bg-zinc-200"
-        >
-          Sign in
-        </a>
-      </div>
-    </header>
-  );
-}
-
-function HeroCopy() {
-  return (
-    <div className="col-span-7 flex flex-col justify-center">
-      <a
-        href="#"
-        className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-zinc-300"
-      >
-        <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-lime-400" />
-        v0.4 — native Chromium control, 40% faster runs
-        <ArrowIcon className="h-3 w-3 text-zinc-500" />
-      </a>
-
-      <h1 className="text-[64px] font-semibold leading-[1.02] tracking-[-0.03em] text-white">
-        Make any AI agent
-        <br />
-        use the{" "}
-        <span className="relative inline-block">
-          <span className="relative z-10 bg-gradient-to-r from-lime-300 via-emerald-300 to-teal-300 bg-clip-text text-transparent">
-            browser
-          </span>
-          <span className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-lime-400/80 to-transparent" />
-        </span>
-        .
-      </h1>
-
-      <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-zinc-400">
-        The open-source toolkit for reliable browser agents. Ship models that
-        click, type, scroll, and reason across real websites — in fewer lines of
-        code than a cURL request.
-      </p>
-
-      <div className="mt-8 flex items-center gap-3">
-        <a
-          href="#"
-          className="group flex items-center gap-2 rounded-full bg-lime-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-lime-200"
-        >
-          Start building free
-          <ArrowIcon className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-5 py-3 text-sm font-medium text-zinc-200 transition hover:border-white/20 hover:bg-white/[0.05]"
-        >
-          <TerminalIcon className="h-3.5 w-3.5 text-zinc-400" />
-          <span className="font-mono text-[13px]">pip install browser-use</span>
-        </a>
-      </div>
-
-      <div className="mt-10 flex items-center gap-8">
-        <Stat value="62.4k" label="GitHub stars" icon={<StarIcon className="h-3.5 w-3.5 text-amber-300" />} />
-        <div className="h-6 w-px bg-white/10" />
-        <Stat value="418" label="Contributors" icon={<UsersIcon className="h-3.5 w-3.5 text-zinc-300" />} />
-        <div className="h-6 w-px bg-white/10" />
-        <Stat value="2.1M" label="Monthly runs" icon={<PulseIcon className="h-3.5 w-3.5 text-lime-300" />} />
-      </div>
-    </div>
-  );
-}
-
-function Stat({
-  value,
-  label,
-  icon,
-}: {
-  value: string;
-  label: string;
-  icon: React.ReactNode;
-}) {
-  return (
-    <div className="flex flex-col">
-      <div className="flex items-center gap-1.5">
-        {icon}
-        <span className="text-lg font-semibold tabular-nums text-white">{value}</span>
-      </div>
-      <span className="mt-0.5 text-[11px] uppercase tracking-wider text-zinc-500">
-        {label}
-      </span>
-    </div>
-  );
-}
-
-function BrowserMock() {
-  return (
-    <div className="col-span-5 flex items-center">
-      <div className="relative w-full">
-        <div className="absolute -inset-8 rounded-[28px] bg-gradient-to-br from-lime-400/10 via-transparent to-indigo-500/10 blur-2xl" />
-        <div className="relative rounded-2xl border border-white/10 bg-[#0c0e13] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)]">
-          <div className="flex items-center gap-2 border-b border-white/5 px-4 py-3">
-            <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
-            <span className="h-2.5 w-2.5 rounded-full bg-amber-300/70" />
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
-            <div className="ml-3 flex flex-1 items-center gap-2 rounded-md border border-white/5 bg-white/[0.03] px-3 py-1 text-[11px] text-zinc-400">
-              <LockIcon className="h-3 w-3 text-zinc-500" />
-              <span className="font-mono">app.browser-use.com/agent/run</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-5">
-            <div className="col-span-3 border-r border-white/5 p-5">
-              <div className="mb-4 flex items-center gap-2 text-[11px] uppercase tracking-wider text-zinc-500">
-                <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-lime-400" />
-                Agent running
-              </div>
-              <div className="space-y-2.5">
-                <SkeletonRow w="w-3/4" />
-                <SkeletonRow w="w-5/6" />
-                <SkeletonRow w="w-2/3" />
-                <div className="flex gap-2 pt-1">
-                  <div className="h-7 w-20 rounded-md border border-white/5 bg-white/[0.03]" />
-                  <div className="h-7 w-24 rounded-md bg-lime-300/90" />
-                </div>
-                <SkeletonRow w="w-1/2" />
-                <SkeletonRow w="w-4/5" />
-              </div>
-
-              <div className="relative mt-6 h-32">
-                <div className="cursor-trail absolute left-0 top-0 flex items-center gap-2">
-                  <CursorIcon className="h-4 w-4 -rotate-12 text-lime-300 drop-shadow-[0_0_8px_rgba(163,230,53,0.6)]" />
-                  <span className="rounded-md bg-lime-300 px-2 py-0.5 text-[10px] font-semibold text-zinc-900">
-                    click
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-span-2 p-4">
-              <div className="mb-3 flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-zinc-500">
-                <CodeIcon className="h-3 w-3" />
-                agent.py
-              </div>
-              <div className="space-y-1.5 font-mono text-[11px] leading-relaxed">
-                <CodeLine>
-                  <span className="text-fuchsia-300">from</span>{" "}
-                  <span className="text-zinc-300">browser_use</span>{" "}
-                  <span className="text-fuchsia-300">import</span>{" "}
-                  <span className="text-zinc-200">Agent</span>
-                </CodeLine>
-                <CodeLine />
-                <CodeLine>
-                  <span className="text-zinc-400">agent =</span>{" "}
-                  <span className="text-zinc-200">Agent</span>
-                  <span className="text-zinc-500">(</span>
-                </CodeLine>
-                <CodeLine indent>
-                  <span className="text-emerald-300">task</span>
-                  <span className="text-zinc-500">=</span>
-                  <span className="text-amber-200">&quot;book flight&quot;</span>
-                  <span className="text-zinc-500">,</span>
-                </CodeLine>
-                <CodeLine indent>
-                  <span className="text-emerald-300">llm</span>
-                  <span className="text-zinc-500">=</span>
-                  <span className="text-zinc-200">gpt4o</span>
-                  <span className="text-zinc-500">,</span>
-                </CodeLine>
-                <CodeLine>
-                  <span className="text-zinc-500">)</span>
-                </CodeLine>
-                <CodeLine>
-                  <span className="text-sky-300">await</span>{" "}
-                  <span className="text-zinc-200">agent</span>
-                  <span className="text-zinc-500">.</span>
-                  <span className="text-lime-300">run</span>
-                  <span className="text-zinc-500">()</span>
-                  <span className="type-caret ml-0.5 inline-block h-3 w-1.5 align-middle bg-lime-300" />
-                </CodeLine>
-              </div>
-
-              <div className="mt-5 rounded-md border border-lime-400/20 bg-lime-400/[0.04] p-2.5">
-                <div className="flex items-center gap-1.5 text-[10px] text-lime-300">
-                  <CheckIcon className="h-3 w-3" />
-                  <span className="font-mono">task_complete</span>
-                </div>
-                <div className="mt-1 text-[10px] text-zinc-400">
-                  Booked SFO → JFK, confirmation #A7B92
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function SkeletonRow({ w }: { w: string }) {
-  return (
-    <div className={`h-2 ${w} rounded-full bg-white/[0.06]`} />
-  );
-}
-
-function CodeLine({
-  children,
-  indent,
-}: {
-  children?: React.ReactNode;
-  indent?: boolean;
-}) {
-  return (
-    <div className={indent ? "pl-4" : ""}>
-      {children ?? <span className="opacity-0">.</span>}
-    </div>
-  );
-}
-
-function ValueProps() {
-  const props = [
-    {
-      icon: <ModelIcon />,
-      title: "Model agnostic",
-      desc: "GPT, Claude, Gemini, or local. Swap with one line.",
-    },
-    {
-      icon: <EyeIcon />,
-      title: "Vision + DOM",
-      desc: "Pixel-perfect grounding paired with structured selectors.",
-    },
-    {
-      icon: <ShieldIcon />,
-      title: "Self-healing",
-      desc: "Retries, fallbacks, and replay — production-grade by default.",
-    },
-    {
-      icon: <CloudIcon />,
-      title: "Run anywhere",
-      desc: "Local Chromium, CI, or our managed cloud. Same API.",
-    },
-  ];
-
-  return (
-    <div className="grid grid-cols-4 gap-3 pb-6">
-      {props.map((p) => (
-        <div
-          key={p.title}
-          className="group relative overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.02] p-4 transition hover:border-white/[0.14] hover:bg-white/[0.04]"
-        >
-          <div className="mb-2.5 flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-lime-300">
-            {p.icon}
-          </div>
-          <div className="text-sm font-semibold text-white">{p.title}</div>
-          <div className="mt-1 text-xs leading-relaxed text-zinc-400">{p.desc}</div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-/* ——— Icons (inline SVGs, no external assets) ——— */
+const VALUE_PROPS = [
+  {
+    title: "Any LLM",
+    desc: "GPT, Claude, Gemini, Llama, or local.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+        <path
+          d="M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M3 12h3M18 12h3M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <circle cx="12" cy="12" r="3.2" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    title: "Vision + DOM",
+    desc: "Hybrid element detection that just works.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+        <path
+          d="M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7Z"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+        <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    title: "Multi-tab",
+    desc: "Run parallel sessions with shared state.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+        <rect x="3" y="6" width="13" height="13" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M8 6V4.5A1.5 1.5 0 0 1 9.5 3h10A1.5 1.5 0 0 1 21 4.5v10a1.5 1.5 0 0 1-1.5 1.5H18" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    title: "MIT licensed",
+    desc: "Self-host. Fork it. Ship it.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+        <path d="M12 3 4 6v6c0 4.5 3.2 8.2 8 9 4.8-.8 8-4.5 8-9V6l-8-3Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+        <path d="m9 12 2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+];
 
 function Logo() {
   return (
     <div className="flex items-center gap-2">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <rect x="1.5" y="1.5" width="21" height="21" rx="6" stroke="white" strokeOpacity="0.2" />
-        <rect x="1.5" y="1.5" width="21" height="6" rx="3" fill="white" fillOpacity="0.06" />
-        <circle cx="5" cy="4.5" r="0.9" fill="#a3e635" />
-        <circle cx="7.8" cy="4.5" r="0.9" fill="#ffffff" fillOpacity="0.35" />
-        <circle cx="10.6" cy="4.5" r="0.9" fill="#ffffff" fillOpacity="0.2" />
-        <path
-          d="M8 13.5l3 3 5-6"
-          stroke="#a3e635"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
+      <svg viewBox="0 0 28 28" className="h-6 w-6" aria-hidden>
+        <rect x="1.5" y="1.5" width="25" height="25" rx="5" fill="#c6f432" />
+        <circle cx="8" cy="9" r="1.2" fill="#0a0a0a" />
+        <circle cx="12" cy="9" r="1.2" fill="#0a0a0a" />
+        <circle cx="16" cy="9" r="1.2" fill="#0a0a0a" />
+        <path d="M7 19l4-4 3 3 6-6" stroke="#0a0a0a" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
-      <span className="text-[15px] font-semibold tracking-tight text-white">
-        browser use
+      <span className="text-[15px] font-semibold tracking-tight">browser-use</span>
+    </div>
+  );
+}
+
+function GithubBadge() {
+  return (
+    <a
+      href={GITHUB_URL}
+      className="group flex items-center gap-0 overflow-hidden rounded-md border border-[#262626] bg-[#111] text-xs font-medium transition-colors hover:border-[#333]"
+    >
+      <span className="flex items-center gap-1.5 px-2.5 py-1.5 text-neutral-300">
+        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor" aria-hidden>
+          <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.17c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.28-1.67-1.28-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.95.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.17 1.18.92-.26 1.9-.39 2.88-.39.98 0 1.96.13 2.88.39 2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.77.11 3.06.73.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .3.21.66.79.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5Z" />
+        </svg>
+        GitHub
+      </span>
+      <span className="flex items-center gap-1 border-l border-[#262626] bg-[#0d0d0d] px-2.5 py-1.5 text-[#c6f432]">
+        <svg viewBox="0 0 24 24" className="h-3 w-3" fill="currentColor" aria-hidden>
+          <path d="m12 2 2.9 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.5 21.7l1.8-7.3L1.6 9.5l7.5-.6L12 2Z" />
+        </svg>
+        {STARS}
+      </span>
+    </a>
+  );
+}
+
+function BrowserVisual() {
+  return (
+    <div className="relative h-[420px] w-full max-w-[520px]">
+      <div className="absolute inset-0 rounded-xl border border-[#1f1f1f] bg-[#0d0d0d] shadow-[0_0_0_1px_rgba(198,244,50,0.05)]">
+        {/* titlebar */}
+        <div className="flex items-center gap-1.5 border-b border-[#1a1a1a] px-3 py-2.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#2a2a2a]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#2a2a2a]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#2a2a2a]" />
+          <div className="ml-3 flex h-5 flex-1 items-center rounded border border-[#1a1a1a] bg-[#0a0a0a] px-2 font-mono text-[10px] text-neutral-500">
+            browser-use.com
+          </div>
+        </div>
+
+        {/* page content */}
+        <div className="relative h-[calc(100%-38px)] p-5">
+          <svg viewBox="0 0 440 340" className="h-full w-full">
+            {/* header bar */}
+            <rect x="0" y="0" width="180" height="14" rx="3" fill="#1a1a1a" />
+            <rect x="0" y="24" width="120" height="10" rx="2" fill="#151515" />
+
+            {/* grid of cards */}
+            <g>
+              <rect x="0" y="52" width="135" height="100" rx="6" fill="#111" stroke="#1f1f1f" />
+              <rect x="10" y="62" width="60" height="8" rx="2" fill="#222" />
+              <rect x="10" y="76" width="110" height="6" rx="2" fill="#1a1a1a" />
+              <rect x="10" y="88" width="90" height="6" rx="2" fill="#1a1a1a" />
+              <rect x="10" y="128" width="44" height="14" rx="3" fill="#c6f432" />
+            </g>
+            <g>
+              <rect x="152" y="52" width="135" height="100" rx="6" fill="#111" stroke="#c6f432" strokeWidth="1.5" />
+              <rect x="162" y="62" width="60" height="8" rx="2" fill="#2a2a2a" />
+              <rect x="162" y="76" width="110" height="6" rx="2" fill="#1a1a1a" />
+              <rect x="162" y="88" width="90" height="6" rx="2" fill="#1a1a1a" />
+              <rect x="162" y="128" width="44" height="14" rx="3" fill="#c6f432" />
+              {/* selection label */}
+              <g>
+                <rect x="152" y="36" width="86" height="14" rx="3" fill="#c6f432" />
+                <text x="158" y="46" fontFamily="var(--font-geist-mono), ui-monospace" fontSize="9" fill="#0a0a0a" fontWeight="600">
+                  button.primary
+                </text>
+              </g>
+            </g>
+            <g>
+              <rect x="304" y="52" width="135" height="100" rx="6" fill="#111" stroke="#1f1f1f" />
+              <rect x="314" y="62" width="60" height="8" rx="2" fill="#222" />
+              <rect x="314" y="76" width="110" height="6" rx="2" fill="#1a1a1a" />
+              <rect x="314" y="88" width="90" height="6" rx="2" fill="#1a1a1a" />
+              <rect x="314" y="128" width="44" height="14" rx="3" fill="#1a1a1a" />
+            </g>
+
+            {/* form rows */}
+            <rect x="0" y="172" width="440" height="34" rx="4" fill="#0f0f0f" stroke="#1a1a1a" />
+            <rect x="10" y="183" width="80" height="12" rx="2" fill="#1e1e1e" />
+            <rect x="0" y="214" width="440" height="34" rx="4" fill="#0f0f0f" stroke="#1a1a1a" />
+            <rect x="10" y="225" width="120" height="12" rx="2" fill="#1e1e1e" />
+            <rect x="0" y="256" width="440" height="34" rx="4" fill="#0f0f0f" stroke="#1a1a1a" />
+            <rect x="10" y="267" width="60" height="12" rx="2" fill="#1e1e1e" />
+
+            {/* scan line */}
+            <g style={{ animation: "scan 3.6s linear infinite" }}>
+              <line x1="0" y1="40" x2="440" y2="40" stroke="#c6f432" strokeWidth="0.6" opacity="0.35" />
+            </g>
+          </svg>
+
+          {/* agent cursor */}
+          <div
+            className="pointer-events-none absolute left-5 top-5"
+            style={{ animation: "cursor-path 6s ease-in-out infinite" }}
+          >
+            <svg viewBox="0 0 20 20" className="h-5 w-5 drop-shadow-[0_0_6px_rgba(198,244,50,0.6)]">
+              <path d="M2 2l6 16 2.5-6.5L17 9 2 2Z" fill="#c6f432" stroke="#0a0a0a" strokeWidth="0.8" />
+            </svg>
+            <div className="mt-1 inline-flex items-center gap-1 rounded bg-[#0a0a0a] px-1.5 py-0.5 font-mono text-[9px] text-[#c6f432] ring-1 ring-[#c6f432]/40">
+              <span className="h-1 w-1 rounded-full bg-[#c6f432]" style={{ animation: "pulse-dot 1.2s ease-in-out infinite" }} />
+              agent
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* code chip */}
+      <div className="absolute -bottom-4 -left-4 flex items-center gap-2 rounded-md border border-[#1f1f1f] bg-[#0d0d0d] px-3 py-2 font-mono text-[11px] text-neutral-300">
+        <span className="h-1.5 w-1.5 rounded-full bg-[#c6f432]" style={{ animation: "pulse-dot 1.4s ease-in-out infinite" }} />
+        agent.run(&quot;book a flight to SFO&quot;)
+      </div>
+
+      {/* step chip */}
+      <div className="absolute -right-3 top-12 rounded-md border border-[#1f1f1f] bg-[#0d0d0d] px-2.5 py-1.5 text-[11px]">
+        <div className="font-mono text-[9px] text-neutral-500">STEP 3/7</div>
+        <div className="text-neutral-200">click <span className="text-[#c6f432]">Continue</span></div>
+      </div>
+    </div>
+  );
+}
+
+function ContributorRow() {
+  const initials = ["GA", "MR", "SJ", "LK", "TN", "PV"];
+  return (
+    <div className="flex items-center gap-3">
+      <div className="flex -space-x-2">
+        {initials.map((i, idx) => (
+          <div
+            key={i}
+            className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#0a0a0a] bg-[#1a1a1a] font-mono text-[9px] font-medium text-neutral-300"
+            style={{ zIndex: 10 - idx }}
+          >
+            {i}
+          </div>
+        ))}
+        <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#0a0a0a] bg-[#c6f432] font-mono text-[9px] font-semibold text-[#0a0a0a]">
+          +{CONTRIBUTORS - initials.length}
+        </div>
+      </div>
+      <span className="text-xs text-neutral-500">
+        {CONTRIBUTORS} contributors shipping weekly
       </span>
     </div>
   );
 }
 
-function GithubIcon({ className }: { className?: string }) {
+export default function Home() {
   return (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
-      <path d="M12 .5C5.73.5.86 5.37.86 11.64c0 4.92 3.19 9.09 7.62 10.57.56.1.76-.24.76-.54v-2.1c-3.1.68-3.75-1.3-3.75-1.3-.5-1.28-1.24-1.62-1.24-1.62-1-.7.08-.69.08-.69 1.11.08 1.7 1.14 1.7 1.14.99 1.7 2.6 1.21 3.23.93.1-.72.39-1.21.7-1.49-2.48-.28-5.08-1.24-5.08-5.52 0-1.22.44-2.22 1.14-3-.11-.28-.5-1.42.11-2.96 0 0 .94-.3 3.07 1.14a10.65 10.65 0 0 1 5.58 0c2.13-1.44 3.07-1.14 3.07-1.14.61 1.54.23 2.68.12 2.96.71.78 1.14 1.78 1.14 3 0 4.29-2.61 5.23-5.1 5.51.4.35.76 1.03.76 2.07v3.06c0 .3.2.65.77.54 4.42-1.48 7.6-5.65 7.6-10.57C23.14 5.37 18.27.5 12 .5z" />
-    </svg>
-  );
-}
+    <div className="flex h-screen w-full flex-col overflow-hidden bg-[#0a0a0a] text-neutral-100">
+      {/* NAV */}
+      <nav className="flex h-14 shrink-0 items-center justify-between border-b border-[#141414] px-10">
+        <Logo />
+        <div className="flex items-center gap-6 text-sm text-neutral-400">
+          <a href="#docs" className="hover:text-neutral-100">Docs</a>
+          <a href="#examples" className="hover:text-neutral-100">Examples</a>
+          <a href="#cloud" className="hover:text-neutral-100">Cloud</a>
+          <GithubBadge />
+        </div>
+      </nav>
 
-function StarIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
-      <path d="M12 17.3l-5.4 3.2 1.4-6.1L3 10.2l6.2-.5L12 4l2.8 5.7 6.2.5-5 4.2 1.4 6.1z" />
-    </svg>
-  );
-}
+      {/* HERO */}
+      <main className="flex flex-1 items-center px-10">
+        <div className="mx-auto grid w-full max-w-[1240px] grid-cols-12 items-center gap-10">
+          {/* LEFT */}
+          <div className="col-span-7 flex flex-col gap-7">
+            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#1f1f1f] bg-[#111] px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-neutral-400">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#c6f432]" />
+              Open source · v1.4 released
+            </div>
 
-function UsersIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-      <circle cx="9" cy="8" r="3.2" />
-      <circle cx="16.5" cy="9" r="2.3" />
-      <path d="M3 19c0-3 3-5 6-5s6 2 6 5" strokeLinecap="round" />
-      <path d="M15 19c0-2 2-3.5 4-3.5s2.5 1 2.5 2.5" strokeLinecap="round" />
-    </svg>
-  );
-}
+            <h1 className="text-[60px] font-semibold leading-[1.02] tracking-[-0.03em] text-neutral-50">
+              Let AI agents<br />
+              drive the <span className="text-[#c6f432]">browser.</span>
+            </h1>
 
-function PulseIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M3 12h4l2-6 4 12 2-6h6" />
-    </svg>
-  );
-}
+            <p className="max-w-[520px] text-[17px] leading-[1.55] text-neutral-400">
+              Browser Use is the open-source framework for building agents that
+              click, type, and navigate real websites — with any LLM you choose.
+            </p>
 
-function ArrowIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 16 16" className={className} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M3 8h10M9 4l4 4-4 4" />
-    </svg>
-  );
-}
+            <div className="flex items-center gap-3">
+              <a
+                href={GITHUB_URL}
+                className="group inline-flex items-center gap-3 rounded-md bg-[#c6f432] px-4 py-3 font-mono text-sm font-medium text-[#0a0a0a] transition-transform hover:-translate-y-[1px]"
+              >
+                <span className="text-neutral-500">$</span>
+                pip install browser-use
+                <span className="ml-1 rounded-sm border border-[#0a0a0a]/20 px-1.5 py-0.5 text-[10px] uppercase tracking-wider">
+                  copy
+                </span>
+              </a>
+              <a
+                href={GITHUB_URL}
+                className="inline-flex items-center gap-2 rounded-md border border-[#262626] bg-transparent px-4 py-3 text-sm font-medium text-neutral-200 transition-colors hover:border-[#3a3a3a] hover:bg-[#111]"
+              >
+                View on GitHub
+                <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none">
+                  <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </div>
 
-function TerminalIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 16 16" className={className} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M3 5l3 3-3 3M8 11h5" />
-    </svg>
-  );
-}
+            <ContributorRow />
+          </div>
 
-function LockIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 16 16" className={className} fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden>
-      <rect x="3.5" y="7" width="9" height="6" rx="1.2" />
-      <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" strokeLinecap="round" />
-    </svg>
-  );
-}
+          {/* RIGHT */}
+          <div className="col-span-5 flex justify-end">
+            <BrowserVisual />
+          </div>
+        </div>
+      </main>
 
-function CursorIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 16 16" className={className} fill="currentColor" aria-hidden>
-      <path d="M2 1.5l11 5.2-4.6 1.4-1.6 4.7L2 1.5z" />
-    </svg>
-  );
-}
-
-function CodeIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 16 16" className={className} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M5.5 5L2.5 8l3 3M10.5 5l3 3-3 3" />
-    </svg>
-  );
-}
-
-function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 16 16" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M3 8.5l3 3 7-7" />
-    </svg>
-  );
-}
-
-function ModelIcon() {
-  return (
-    <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden>
-      <circle cx="10" cy="10" r="2" />
-      <circle cx="4" cy="5" r="1.5" />
-      <circle cx="16" cy="5" r="1.5" />
-      <circle cx="4" cy="15" r="1.5" />
-      <circle cx="16" cy="15" r="1.5" />
-      <path d="M5 6l4 3M15 6l-4 3M5 14l4-3M15 14l-4-3" />
-    </svg>
-  );
-}
-
-function EyeIcon() {
-  return (
-    <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
-      <path d="M1.5 10S4.5 4 10 4s8.5 6 8.5 6-3 6-8.5 6S1.5 10 1.5 10z" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="10" cy="10" r="2.5" />
-    </svg>
-  );
-}
-
-function ShieldIcon() {
-  return (
-    <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M10 2l6.5 2.5v5c0 4-3 7-6.5 8.5C6.5 16.5 3.5 13.5 3.5 9.5v-5L10 2z" />
-      <path d="M7 10l2 2 4-4" />
-    </svg>
-  );
-}
-
-function CloudIcon() {
-  return (
-    <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M5.5 15h9a3.5 3.5 0 0 0 .4-6.98A5 5 0 0 0 5.1 8.5 3.5 3.5 0 0 0 5.5 15z" />
-    </svg>
+      {/* VALUE PROPS STRIP */}
+      <section className="shrink-0 border-t border-[#141414] px-10 py-5">
+        <div className="mx-auto grid w-full max-w-[1240px] grid-cols-4 gap-4">
+          {VALUE_PROPS.map((v) => (
+            <div
+              key={v.title}
+              className="flex items-center gap-3 rounded-lg border border-[#141414] bg-[#0d0d0d] px-4 py-3"
+            >
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[#1f1f1f] bg-[#111] text-[#c6f432]">
+                {v.icon}
+              </div>
+              <div className="min-w-0">
+                <div className="text-sm font-medium text-neutral-100">{v.title}</div>
+                <div className="truncate text-xs text-neutral-500">{v.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }

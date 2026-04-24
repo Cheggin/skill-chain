@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1777006556110,
+  "lastScanned": 1777008253443,
   "projectRoot": "/private/tmp/skill-chain/eval/without-chain",
   "techStack": {
     "languages": [
@@ -74,7 +74,7 @@
       "path": "app",
       "purpose": "Application code",
       "fileCount": 4,
-      "lastAccessed": 1777006556016,
+      "lastAccessed": 1777008253393,
       "keyFiles": [
         "favicon.ico",
         "globals.css",
@@ -86,7 +86,7 @@
       "path": "public",
       "purpose": "Public files",
       "fileCount": 5,
-      "lastAccessed": 1777006556063,
+      "lastAccessed": 1777008253395,
       "keyFiles": [
         "file.svg",
         "globe.svg",
@@ -100,19 +100,25 @@
     {
       "path": "app/globals.css",
       "accessCount": 4,
-      "lastAccessed": 1777006586399,
+      "lastAccessed": 1777008294401,
       "type": "file"
     },
     {
       "path": "app/layout.tsx",
       "accessCount": 4,
-      "lastAccessed": 1777006592410,
+      "lastAccessed": 1777008301036,
       "type": "file"
     },
     {
       "path": "app/page.tsx",
       "accessCount": 4,
-      "lastAccessed": 1777006679046,
+      "lastAccessed": 1777008370059,
+      "type": "file"
+    },
+    {
+      "path": "reagan_plan_browser_use_landing.md",
+      "accessCount": 2,
+      "lastAccessed": 1777008286207,
       "type": "file"
     }
   ],
