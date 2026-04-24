@@ -1,0 +1,66 @@
+brand: Browser Use
+mode: dark
+
+colors:
+  background: "#0a0a0a"
+  surface:    "#111111"
+  surface_2:  "#161616"
+  border:     "#1f1f1f"
+  border_hi:  "#2a2a2a"
+  text:       "#ededed"
+  muted:      "#8a8a8a"
+  accent:     "#c6f432"   # lime — CTAs, highlights, code punctuation
+  accent_ink: "#0a0a0a"   # text on accent
+  semantic:
+    success: "#6ee7b7"
+    error:   "#f87171"
+
+typography:
+  heading:
+    family: "Geist Sans, system-ui, sans-serif"
+    weight: 600
+    tracking: "-0.02em"
+  body:
+    family: "Geist Sans, system-ui, sans-serif"
+    weight: 400
+    size: "15px"
+    lineHeight: 1.55
+  mono:
+    family: "Geist Mono, ui-monospace, SFMono-Regular, monospace"
+    use_for: "install commands, code snippets, shell prompts"
+
+spacing:
+  section_y: 48        # compressed for single-viewport
+  container_max: 1200
+  radius: 10
+  radius_lg: 14
+
+components:
+  button_primary:
+    bg: accent
+    fg: accent_ink
+    hover: "translate -1px, no shadow"
+  button_ghost:
+    bg: transparent
+    border: border_hi
+    fg: text
+  card:
+    bg: surface
+    border: border
+    radius: radius_lg
+
+voice:
+  style: "active voice, developer peer"
+  tone: "confident, plainspoken, no hype"
+  avoid:
+    - revolutionary
+    - game-changing
+    - cutting-edge
+    - emojis
+    - exclamation points
+  cta_style: "action verb + object (Star on GitHub, Copy install)"
+
+logo:
+  wordmark: "browser-use"
+  weight: 600
+  color: text

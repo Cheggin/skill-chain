@@ -1,24 +1,25 @@
-# Plan — Browser Use landing page
+# Browser Use Landing Page — Plan
 
-Single viewport (1440x900), dark theme, no scroll.
+## Scope
+Single-viewport landing page for Browser Use. Dark theme (user override of skill's light-mode rule). 1440x900 no-scroll.
 
-## Layout
-- Full-height flex column: top nav (compact), hero (fills), footer strip (slim)
-- Left column (~55%): eyebrow badge, H1, subheadline, CTA row, install snippet, social proof strip
-- Right column (~45%): SVG browser-window illustration with animated agent cursor + task list overlay
+## Layout budget (900px)
+- Nav: 64px
+- Hero (headline, sub, CTA, browser-demo SVG): ~480px
+- Value props (3, visual): ~180px
+- Social proof bar (stars, contributors, PyPI): ~80px
+- Breathing room: ~96px
 
-## Content
-- H1: "The browser, controlled by your AI."
-- Sub: "Open-source Python & TypeScript SDK for AI agents that navigate, extract, and act on any website."
-- CTA primary: `pip install browser-use` (copy) → secondary "View on GitHub"
-- Value props (4 icons): Any LLM · Vision + DOM · Self-healing selectors · Python + TS
-- Social proof: GitHub stars (60k+), contributors (400+), forks, "used by" row
+## Style
+- Dark: bg #0a0a0a, surface #111, border #1f1f1f
+- Accent: electric lime/green (#c6f432) — matches browser-use brand energy
+- Font: Geist Sans (already in layout), Geist Mono for code
+- No gradients on text, no glassmorphism, no emojis, no Lucide-in-box
+
+## Hero visual
+Custom SVG: stylized browser window with an AI cursor path tracing a form fill → click. Pure SVG, no images.
 
 ## Files
 - app/page.tsx — full page
-- app/layout.tsx — metadata, lock to dark
-- app/globals.css — force dark background, disable scroll on body
-
-## Constraints
-- No Inter, no sparkles icon, no placeholder images, no !important
-- SVG only; icons inline
+- app/layout.tsx — title/desc
+- app/globals.css — minor additions if needed
