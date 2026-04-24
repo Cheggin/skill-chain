@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --background: #07080b;
+  --foreground: #e8eaed;
+  --surface: #0d1016;
+  --surface-2: #12161f;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --accent: #7cf0a3;
+  --accent-dim: rgba(124, 240, 163, 0.12);
+  --muted: #8a93a3;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(124, 240, 163, 0.08), transparent 60%),
+    radial-gradient(700px 500px at -10% 110%, rgba(98, 143, 255, 0.08), transparent 60%),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* animated agent cursor path */
+@keyframes agent-path {
+  0%   { offset-distance: 0%; opacity: 0; }
+  5%   { opacity: 1; }
+  45%  { offset-distance: 45%; opacity: 1; }
+  55%  { offset-distance: 55%; opacity: 1; }
+  95%  { offset-distance: 100%; opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.6); opacity: 0.8; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes caret-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes row-fill {
+  0%, 20% { width: 0; }
+  60%, 100% { width: 100%; }
+}
+
+.agent-cursor {
+  offset-path: path("M 40 60 C 140 40, 220 160, 360 120 S 520 220, 560 280");
+  animation: agent-path 6s cubic-bezier(0.45, 0, 0.35, 1) infinite;
+}
+
+.pulse-ring {
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+
+.caret {
+  animation: caret-blink 1.1s steps(1) infinite;
+}
+
+.row-progress {
+  animation: row-fill 6s cubic-bezier(0.45, 0, 0.35, 1) infinite;
+}

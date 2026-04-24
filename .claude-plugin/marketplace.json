@@ -1,10 +1,29 @@
 {
   "name": "skill-chain",
-  "display_name": "Skill Chain",
-  "description": "Deterministic phase-gated skill enforcement for AI coding agents.",
-  "version": "0.1.0",
-  "author": "Reagan Hsu",
-  "repository": "https://github.com/Cheggin/skill-chain",
-  "license": "MIT",
-  "categories": ["workflow", "quality", "enforcement"]
+  "metadata": {
+    "description": "Deterministic phase-gated skill enforcement for AI coding agents."
+  },
+  "owner": {
+    "name": "Reagan Hsu",
+    "email": "reagan@browser-use.com"
+  },
+  "plugins": [
+    {
+      "name": "skill-chain",
+      "description": "Blocks file edits until earlier workflow phases complete. Ships with a website-design chain and 8 production skills.",
+      "author": {
+        "name": "Reagan Hsu"
+      },
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/Cheggin/skill-chain",
+      "tags": [
+        "skill-chain",
+        "workflow",
+        "enforcement",
+        "design",
+        "quality"
+      ]
+    }
+  ]
 }
