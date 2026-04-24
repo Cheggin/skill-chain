@@ -29,10 +29,6 @@
         {
           "name": "quality",
           "required": ["polish"]
-        },
-        {
-          "name": "ship",
-          "required": ["deploy-pipeline"]
         }
       ]
     }
