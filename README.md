@@ -52,22 +52,32 @@ No state files. No external services. The session transcript is the single sourc
 
 ## Quick Start
 
-### 1. Copy into your project
+### Option A: Claude Code Plugin (recommended)
 
-```bash
-# Clone and copy the enforcer + chain definition
-git clone https://github.com/Cheggin/skill-chain
-cp skill-chain/skill-chain.mjs your-project/
-cp skill-chain/skill-chains.json your-project/  # edit this to define your flows
+```
+/plugin marketplace add Cheggin/skill-chain
+/plugin install skill-chain@skill-chain
 ```
 
-### 2. Wire it up
+This registers the enforcer hook and all 8 example skills automatically. Skills become available as `/skill-chain:<skill-name>`.
+
+### Option B: Copy into your project
 
 ```bash
+git clone https://github.com/Cheggin/skill-chain
+cp skill-chain/skill-chain.mjs your-project/
+cp skill-chain/skill-chains.json your-project/
+cp -r skill-chain/skills/ your-project/skills/
 cd your-project
-node skill-chain/setup.mjs              # auto-detects runtime
-node skill-chain/setup.mjs --runtime claude  # Claude Code only
-node skill-chain/setup.mjs --runtime codex   # Codex CLI only
+node skill-chain.mjs  # or use setup.mjs to wire hooks automatically
+```
+
+### Option C: Setup script (Claude Code or Codex CLI)
+
+```bash
+node setup.mjs              # auto-detects runtime
+node setup.mjs --runtime claude  # Claude Code only
+node setup.mjs --runtime codex   # Codex CLI only
 ```
 
 This adds the enforcer as a PreToolUse hook in `.claude/settings.json` or `.codex/hooks.json`.
