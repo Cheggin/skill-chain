@@ -2,3 +2,6 @@ node_modules/
 .DS_Store
 .claude/
 .codex/
+eval/without-chain/node_modules/
+eval/with-chain/node_modules/
+eval/*/.next/
