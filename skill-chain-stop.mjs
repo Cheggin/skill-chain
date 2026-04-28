@@ -43,11 +43,14 @@ function missingFromPhase(phase, fired) {
 }
 
 function loadChains(cwd) {
+  const pluginRoot = process.env.CLAUDE_PLUGIN_ROOT;
   const candidates = [
     resolve(cwd, 'skill-chains.json'),
     resolve(cwd, 'chains/skill-chains.json'),
     resolve(cwd, '.harness/skill-chains.json'),
-  ];
+    pluginRoot ? resolve(pluginRoot, 'skill-chains.json') : null,
+    pluginRoot ? resolve(pluginRoot, 'chains/skill-chains.json') : null,
+  ].filter(Boolean);
   for (const path of candidates) {
     if (!existsSync(path)) continue;
     try {

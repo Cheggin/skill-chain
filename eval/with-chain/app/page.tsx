@@ -1,282 +1,137 @@
-const ACCENT = "#c6f432";
+import Image from "next/image";
 
-function Logo() {
-  return (
-    <div className="flex items-center gap-2">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <rect x="1.5" y="3.5" width="21" height="17" rx="3" stroke="#ededed" strokeWidth="1.5" />
-        <path d="M1.5 8H22.5" stroke="#ededed" strokeWidth="1.5" />
-        <circle cx="4.5" cy="5.75" r="0.75" fill={ACCENT} />
-        <circle cx="7" cy="5.75" r="0.75" fill="#3a3a3a" />
-        <circle cx="9.5" cy="5.75" r="0.75" fill="#3a3a3a" />
-        <path d="M10 13.5L13 15.5L10 17.5V13.5Z" fill={ACCENT} />
-      </svg>
-      <span className="font-mono text-sm tracking-tight">browser-use</span>
-    </div>
-  );
-}
+const valueProps = [
+  {
+    label: "01",
+    title: "Real browsers, real DOM",
+    body: "Agents drive Chromium with full JS execution. No brittle scrapers, no headless surprises.",
+  },
+  {
+    label: "02",
+    title: "Vision + structure",
+    body: "Pixel-grounded screenshots paired with accessibility trees. Models see what users see.",
+  },
+  {
+    label: "03",
+    title: "Drop-in for any LLM",
+    body: "Works with Claude, GPT, Gemini, and local models. Bring your own stack, swap in minutes.",
+  },
+];
 
-function Nav() {
+export default function Page() {
   return (
-    <nav className="flex items-center justify-between px-10 py-5 border-b border-[color:var(--border)]">
-      <Logo />
-      <div className="hidden md:flex items-center gap-8 text-sm text-[color:var(--muted)]">
-        <a href="#docs" className="hover:text-white transition-colors">Docs</a>
-        <a href="#examples" className="hover:text-white transition-colors">Examples</a>
-        <a href="#cloud" className="hover:text-white transition-colors">Cloud</a>
-        <a href="#blog" className="hover:text-white transition-colors">Blog</a>
-      </div>
-      <div className="flex items-center gap-3">
+    <main className="h-screen w-screen flex flex-col bg-background text-foreground">
+      <header className="flex items-center justify-between px-10 h-14 border-b border-[var(--border)] shrink-0">
+        <div className="flex items-center gap-2">
+          <span className="size-2.5 bg-[var(--accent)]" />
+          <span className="font-mono text-[13px] tracking-tight">browser-use</span>
+        </div>
+        <nav className="flex items-center gap-8 text-[13px] text-[var(--muted)]">
+          <a href="#docs" className="hover:text-foreground transition-colors">Docs</a>
+          <a href="#examples" className="hover:text-foreground transition-colors">Examples</a>
+          <a href="#cloud" className="hover:text-foreground transition-colors">Cloud</a>
+          <a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a>
+        </nav>
         <a
           href="https://github.com/browser-use/browser-use"
-          className="hidden sm:flex items-center gap-2 text-sm text-[color:var(--muted)] hover:text-white transition-colors"
+          className="flex items-center gap-2 border border-[var(--border)] px-3 h-9 text-[13px] hover:border-[var(--accent)] transition-colors"
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-            <path d="M12 .5C5.73.5.77 5.46.77 11.73c0 4.94 3.2 9.12 7.64 10.6.56.1.76-.24.76-.54v-1.9c-3.1.67-3.76-1.5-3.76-1.5-.5-1.27-1.23-1.6-1.23-1.6-1-.68.08-.67.08-.67 1.1.08 1.68 1.13 1.68 1.13.98 1.68 2.58 1.2 3.21.92.1-.72.38-1.2.7-1.47-2.48-.28-5.08-1.24-5.08-5.5 0-1.22.43-2.21 1.14-2.99-.11-.28-.5-1.4.11-2.93 0 0 .93-.3 3.06 1.14a10.6 10.6 0 0 1 5.57 0c2.12-1.44 3.05-1.14 3.05-1.14.61 1.53.23 2.65.11 2.93.71.78 1.14 1.77 1.14 2.99 0 4.27-2.6 5.22-5.08 5.5.39.34.74 1 .74 2.02v3c0 .3.2.65.77.54A11.23 11.23 0 0 0 23.23 11.73C23.23 5.46 18.27.5 12 .5Z" />
+          <svg viewBox="0 0 24 24" fill="currentColor" className="size-4">
+            <path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.95.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.94 10.94 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.15v3.18c0 .31.21.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z" />
           </svg>
-          <span>62.4k</span>
+          <span className="font-mono">62.4k</span>
+          <span className="text-[var(--muted)]">stars</span>
         </a>
-        <a
-          href="#start"
-          className="text-sm font-medium px-4 py-2 rounded-md text-black hover:brightness-110 transition"
-          style={{ background: ACCENT }}
-        >
-          Start building
-        </a>
-      </div>
-    </nav>
-  );
-}
+      </header>
 
-function Step({
-  color,
-  label,
-  value,
-  done,
-  active,
-}: {
-  color: string;
-  label: string;
-  value: string;
-  done?: boolean;
-  active?: boolean;
-}) {
-  return (
-    <div className="flex items-center gap-2">
-      <span
-        className="w-1.5 h-1.5 rounded-full shrink-0"
-        style={{ background: done || active ? color : "#2a2a2a" }}
-      />
-      <span className="text-[color:var(--muted)] w-14">{label}</span>
-      <span className={done ? "text-[color:var(--foreground)]" : active ? "text-white" : "text-[color:var(--muted)]"}>
-        {value}
-      </span>
-      {active && <span className="ml-1 inline-block w-1 h-3 bg-white animate-pulse" />}
-    </div>
-  );
-}
+      <section className="flex-1 grid grid-cols-[1.05fr_1fr] min-h-0">
+        <div className="flex flex-col justify-between px-10 py-10 border-r border-[var(--border)]">
+          <div className="flex items-center gap-2 text-[11px] font-mono text-[var(--muted)] uppercase tracking-[0.18em]">
+            <span className="size-1.5 rounded-full bg-[var(--accent)]" />
+            v0.4 — pip install browser-use
+          </div>
 
-function BrowserMock() {
-  return (
-    <div className="relative w-full rounded-xl border border-[color:var(--border)] bg-[color:var(--surface)] overflow-hidden">
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-[color:var(--border)]">
-        <span className="w-2.5 h-2.5 rounded-full bg-[#2a2a2a]" />
-        <span className="w-2.5 h-2.5 rounded-full bg-[#2a2a2a]" />
-        <span className="w-2.5 h-2.5 rounded-full bg-[#2a2a2a]" />
-        <div className="ml-3 flex-1 text-xs font-mono text-[color:var(--muted)] bg-black/40 rounded px-3 py-1 border border-[color:var(--border)]">
-          linear.app/team/ENG/active
-        </div>
-      </div>
-      <div className="grid grid-cols-[1fr_1.2fr]">
-        <div className="p-5 border-r border-[color:var(--border)]">
-          <div className="text-[10px] font-mono text-[color:var(--muted)] uppercase tracking-widest mb-3">
-            Agent task
-          </div>
-          <div className="text-sm leading-relaxed">
-            Find all P1 issues assigned to me this sprint and export them to CSV.
-          </div>
-          <div className="mt-5 space-y-2 font-mono text-[11px]">
-            <Step color={ACCENT} label="goto" value="linear.app" done />
-            <Step color={ACCENT} label="click" value="Filter › Priority" done />
-            <Step color={ACCENT} label="select" value="Urgent · High" done />
-            <Step color={ACCENT} label="extract" value="12 issues" active />
-            <Step color="#3a3a3a" label="export" value="issues.csv" />
-          </div>
-        </div>
-        <div className="relative p-5">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="w-5 h-5 rounded bg-[#5e6ad2]" />
-            <span className="text-xs font-medium">Active issues</span>
-            <span className="ml-auto text-[10px] font-mono text-[color:var(--muted)]">12 results</span>
-          </div>
-          <div className="space-y-1.5">
-            {[
-              ["ENG-412", "Fix retry loop in worker", "Urgent"],
-              ["ENG-408", "Queue backpressure on spike", "High"],
-              ["ENG-401", "Session token rotation", "High"],
-              ["ENG-397", "Timeout on headless restart", "Urgent"],
-              ["ENG-390", "Log level noise", "High"],
-            ].map(([id, title, pri], i) => (
-              <div
-                key={id}
-                className={`flex items-center gap-3 px-2.5 py-1.5 rounded text-[11px] ${
-                  i === 3 ? "ring-1 ring-[color:var(--accent)]/40" : ""
-                }`}
-                style={i === 3 ? { background: "rgba(198,244,50,0.08)" } : undefined}
+          <div className="max-w-xl">
+            <h1 className="text-[56px] leading-[1.02] tracking-tight font-medium">
+              Let agents drive
+              <br />
+              the <span className="relative inline-block">
+                browser
+                <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-[var(--accent)]" />
+              </span>.
+            </h1>
+            <p className="mt-6 text-[15px] leading-[1.6] text-[var(--muted)] max-w-md">
+              Browser Use is the open-source toolkit for shipping AI agents that
+              click, type, and reason across real websites — exactly like a
+              traveler making their way through the web.
+            </p>
+
+            <div className="mt-8 flex items-center gap-3">
+              <a
+                href="https://docs.browser-use.com"
+                className="inline-flex items-center gap-2 h-11 px-5 bg-[var(--accent)] text-black text-[13px] font-medium hover:brightness-95 transition"
               >
-                <span className="font-mono text-[color:var(--muted)] w-14">{id}</span>
-                <span className="flex-1 truncate">{title}</span>
-                <span className={`font-mono ${pri === "Urgent" ? "text-[#ff6b6b]" : "text-[color:var(--muted)]"}`}>
-                  {pri}
-                </span>
-              </div>
-            ))}
+                Start building
+                <span className="font-mono">→</span>
+              </a>
+              <a
+                href="#docs"
+                className="inline-flex items-center gap-2 h-11 px-5 border border-[var(--border)] text-[13px] hover:border-[var(--muted)] transition"
+              >
+                Read the docs
+              </a>
+            </div>
           </div>
-          <div className="absolute pointer-events-none" style={{ right: 24, top: 92 }} aria-hidden>
-            <svg width="28" height="28" viewBox="0 0 28 28">
-              <path d="M3 3 L3 20 L9 15 L13 24 L16 22 L12 14 L20 13 Z" fill={ACCENT} stroke="#000" strokeWidth="1" />
-            </svg>
+
+          <div className="grid grid-cols-3 gap-8 pt-6 border-t border-[var(--border)]">
+            <Metric value="62.4k" label="GitHub stars" />
+            <Metric value="412" label="Contributors" />
+            <Metric value="1.8M" label="Monthly installs" />
           </div>
         </div>
-      </div>
-    </div>
+
+        <div className="relative overflow-hidden bg-[var(--surface)]">
+          <Image
+            src="/hero.png"
+            alt="Hooded traveler in golden robes — the agent on its journey"
+            fill
+            priority
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[var(--background)]/40" />
+          <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between font-mono text-[11px] text-[var(--muted)]">
+            <span>FIG. 01 — agent traversal</span>
+            <span>step 042 / 128</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="grid grid-cols-3 border-t border-[var(--border)] shrink-0">
+        {valueProps.map((p) => (
+          <div
+            key={p.label}
+            className="px-10 py-6 border-r last:border-r-0 border-[var(--border)]"
+          >
+            <div className="flex items-baseline gap-3">
+              <span className="font-mono text-[11px] text-[var(--accent)]">{p.label}</span>
+              <h3 className="text-[15px] font-medium">{p.title}</h3>
+            </div>
+            <p className="mt-2 text-[13px] leading-[1.55] text-[var(--muted)] max-w-[36ch]">
+              {p.body}
+            </p>
+          </div>
+        ))}
+      </section>
+    </main>
   );
 }
 
-function ValueProp({
-  title,
-  desc,
-  icon,
-}: {
-  title: string;
-  desc: string;
-  icon: React.ReactNode;
-}) {
+function Metric({ value, label }: { value: string; label: string }) {
   return (
-    <div className="flex flex-col gap-2">
-      <div style={{ color: ACCENT }}>{icon}</div>
-      <div className="text-[13px] font-medium">{title}</div>
-      <div className="text-[12px] leading-relaxed text-[color:var(--muted)]">{desc}</div>
-    </div>
-  );
-}
-
-export default function Home() {
-  return (
-    <div className="h-screen w-screen flex flex-col bg-[color:var(--background)] text-[color:var(--foreground)]">
-      <Nav />
-      <main className="flex-1 min-h-0 px-10 py-8 grid grid-cols-12 gap-10 max-w-[1400px] mx-auto w-full">
-        <section className="col-span-5 flex flex-col justify-center">
-          <div className="inline-flex items-center gap-2 self-start px-2.5 py-1 rounded-full border border-[color:var(--border)] text-[11px] font-mono text-[color:var(--muted)] mb-6">
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: ACCENT }} />
-            v0.4 — session replay is live
-          </div>
-          <h1 className="text-[52px] leading-[1.02] font-medium tracking-tight">
-            Let AI agents
-            <br />
-            use the{" "}
-            <span className="relative inline-block">
-              <span>browser.</span>
-              <span
-                className="absolute left-0 right-0 -bottom-1 h-[3px]"
-                style={{ background: ACCENT }}
-                aria-hidden
-              />
-            </span>
-          </h1>
-          <p className="mt-5 text-[15px] leading-relaxed text-[color:var(--muted)] max-w-md">
-            Open-source framework that gives any LLM real hands on the web. Read pages,
-            click buttons, fill forms — without brittle selectors.
-          </p>
-          <div className="mt-7 flex items-center gap-3">
-            <a
-              href="#start"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium text-black"
-              style={{ background: ACCENT }}
-            >
-              Start building
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
-                <path d="M1 7H13M13 7L7.5 1.5M13 7L7.5 12.5" stroke="black" strokeWidth="1.5" />
-              </svg>
-            </a>
-            <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-mono text-[color:var(--muted)] border border-[color:var(--border)]">
-              <span style={{ color: ACCENT }}>$</span>
-              pip install browser-use
-            </div>
-          </div>
-          <div className="mt-8 flex items-center gap-6 text-[11px] font-mono text-[color:var(--muted)]">
-            <div className="flex items-center gap-2">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                <path d="M12 .5C5.73.5.77 5.46.77 11.73c0 4.94 3.2 9.12 7.64 10.6.56.1.76-.24.76-.54v-1.9c-3.1.67-3.76-1.5-3.76-1.5-.5-1.27-1.23-1.6-1.23-1.6-1-.68.08-.67.08-.67 1.1.08 1.68 1.13 1.68 1.13.98 1.68 2.58 1.2 3.21.92.1-.72.38-1.2.7-1.47-2.48-.28-5.08-1.24-5.08-5.5 0-1.22.43-2.21 1.14-2.99-.11-.28-.5-1.4.11-2.93 0 0 .93-.3 3.06 1.14a10.6 10.6 0 0 1 5.57 0c2.12-1.44 3.05-1.14 3.05-1.14.61 1.53.23 2.65.11 2.93.71.78 1.14 1.77 1.14 2.99 0 4.27-2.6 5.22-5.08 5.5.39.34.74 1 .74 2.02v3c0 .3.2.65.77.54A11.23 11.23 0 0 0 23.23 11.73C23.23 5.46 18.27.5 12 .5Z" />
-              </svg>
-              <span className="text-white">62,431</span>
-              <span>stars</span>
-            </div>
-            <div className="w-px h-3 bg-[color:var(--border)]" />
-            <div className="flex items-center gap-2">
-              <span className="text-white">384</span>
-              <span>contributors</span>
-            </div>
-            <div className="w-px h-3 bg-[color:var(--border)]" />
-            <div className="flex items-center gap-2">
-              <span className="text-white">2.1M</span>
-              <span>downloads / mo</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="col-span-7 flex flex-col justify-center gap-6">
-          <BrowserMock />
-          <div className="grid grid-cols-4 gap-5 pt-5 border-t border-[color:var(--border)]">
-            <ValueProp
-              title="Any LLM"
-              desc="Plug in GPT, Claude, Gemini, or local. One interface."
-              icon={
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5" />
-                  <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5" opacity="0.5" />
-                  <circle cx="12" cy="4" r="1.5" fill="currentColor" />
-                  <circle cx="20" cy="12" r="1.5" fill="currentColor" />
-                  <circle cx="12" cy="20" r="1.5" fill="currentColor" />
-                  <circle cx="4" cy="12" r="1.5" fill="currentColor" />
-                </svg>
-              }
-            />
-            <ValueProp
-              title="Vision-first"
-              desc="Agents see the page like you do. No selectors to maintain."
-              icon={
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" stroke="currentColor" strokeWidth="1.5" />
-                  <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5" />
-                  <circle cx="12" cy="12" r="1" fill="currentColor" />
-                </svg>
-              }
-            />
-            <ValueProp
-              title="Self-healing"
-              desc="Tasks keep running when layouts change. No flaky tests."
-              icon={
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 12a8 8 0 0 1 14-5.3" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M20 12a8 8 0 0 1-14 5.3" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M18 3v4h-4" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M6 21v-4h4" stroke="currentColor" strokeWidth="1.5" />
-                </svg>
-              }
-            />
-            <ValueProp
-              title="Ship in minutes"
-              desc="Ten lines of Python. Local or cloud, your keys, your data."
-              icon={
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-                </svg>
-              }
-            />
-          </div>
-        </section>
-      </main>
+    <div className="flex flex-col gap-1">
+      <span className="font-mono text-[22px] tracking-tight">{value}</span>
+      <span className="text-[11px] uppercase tracking-[0.16em] text-[var(--muted)]">{label}</span>
     </div>
   );
 }

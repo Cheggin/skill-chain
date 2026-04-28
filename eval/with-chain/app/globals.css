@@ -2,31 +2,33 @@
 
 :root {
   --background: #0a0a0a;
-  --foreground: #ededed;
-  --accent: #c6f432;
-  --muted: #9a9a9a;
-  --border: #1f1f1f;
   --surface: #111111;
+  --border: #1f1f1f;
+  --foreground: #ededed;
+  --muted: #9a9a9a;
+  --accent: #c6f432;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --color-muted: var(--muted);
-  --color-border: var(--border);
   --color-surface: var(--surface);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --font-sans: "Geist Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 html, body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
   height: 100%;
   overflow: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
