@@ -28,7 +28,7 @@
         },
         {
           "name": "quality",
-          "required": ["polish"]
+          "required": ["polish", "make-interfaces-feel-better"]
         }
       ]
     }
