@@ -29,6 +29,10 @@
         {
           "name": "quality",
           "required": ["polish", "make-interfaces-feel-better"]
+        },
+        {
+          "name": "copy",
+          "required": ["anti-ai-writing"]
         }
       ]
     }
